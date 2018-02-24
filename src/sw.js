@@ -1,5 +1,6 @@
 const assets = serviceWorkerOption.assets;
 const CACHE_NAME = 'vivino-cache-v2';
+const URLS_TO_IGNORE = ['chrome-extension', 'sockjs-node']
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
