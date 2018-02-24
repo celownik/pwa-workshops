@@ -1,7 +1,7 @@
 const assets = serviceWorkerOption.assets;
 const CACHE_NAME = 'vivino-cache-v2';
 
-self.addEventListener('install', (event) {
+self.addEventListener('install', (event) => {
   self.skipWaiting();
   console.log('SW installed');
 
