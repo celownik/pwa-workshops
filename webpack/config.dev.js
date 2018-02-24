@@ -1,3 +1,4 @@
+const ServiceWorkerWebpackPlugin = require ('serviceworker-webpack-plugin');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -83,6 +84,9 @@ module.exports = {
       ignore: ['index.html'],
     }]),
     new webpack.HotModuleReplacementPlugin(),
+    new ServiceWorkerWebpackPlugin({
+      entry: paths.serviceWorker,
+    }),
   ],
   devServer: {
     contentBase: paths.build,
