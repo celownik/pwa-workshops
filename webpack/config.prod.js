@@ -1,3 +1,4 @@
+const ServiceWorkerWebpackPlugin = require ('serviceworker-webpack-plugin');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -113,5 +114,9 @@ module.exports = {
       to: paths.build,
     }]),
     new webpack.optimize.UglifyJsPlugin(),
+    new ServiceWorkerWebpackPlugin({
+      entry: paths.serviceWorker,
+      excludes: ['_redirects'],
+    }),
   ],
 };
