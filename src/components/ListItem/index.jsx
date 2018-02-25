@@ -11,7 +11,7 @@ class ListItem extends PureComponent {
   render() {
     return (
       <li>
-        <LazyLoad height={150}>
+        <LazyLoad height={150} overflow>
           <div className="ListItem">
             <article>
               <section className="ListItem__main">

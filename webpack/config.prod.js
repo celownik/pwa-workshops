@@ -4,6 +4,8 @@ const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const paths = require('./paths');
 
 module.exports = {
@@ -109,6 +111,7 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'style.css',
     }),
+    new StyleExtHtmlWebpackPlugin(),
     new CopyWebpackPlugin([{
       from: paths.publicFiles,
       to: paths.build,
@@ -117,6 +120,13 @@ module.exports = {
     new ServiceWorkerWebpackPlugin({
       entry: paths.serviceWorker,
       excludes: ['_redirects'],
+    }),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
   ],
 };
